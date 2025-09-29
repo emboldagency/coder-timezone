@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Rendered by Terraform templatefile. TIMEZONE will be substituted at render time.
-TIMEZONE="$${TIMEZONE}"
+TIMEZONE="${TIMEZONE}"
 
 if [ -z "$TIMEZONE" ]; then
   echo "No TIMEZONE provided; skipping timezone setup"
