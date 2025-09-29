@@ -7,6 +7,7 @@ terraform {
 }
 
 data "coder_parameter" "timezone" {
+  count      = var.timezone == null ? 1 : 0
   name        = "Timezone"
   description = "Set the container timezone for the workspace."
   type        = "string"
@@ -38,34 +39,12 @@ resource "coder_script" "timezone" {
   run_on_start       = true
   start_blocks_login = false
 }
-
-data "coder_parameter" "timezone_dynamic" {
-  count       = var.timezone == null ? 1 : 0
-  name        = "Timezone"
-  description = "Set the container timezone for the workspace."
-  type        = "string"
-  default     = "America/New_York"
-  mutable     = true
-  option {
-    name  = "UTC"
-    value = "UTC"
-  }
-  option {
-    name  = "America/New_York (Eastern)"
-    value = "America/New_York"
-  }
-  option {
-    name  = "America/Los_Angeles (Pacific)"
-    value = "America/Los_Angeles"
-  }
-}
-
 locals {
   # Resolve the timezone in one place with consistent types.
   # Precedence: explicit var.timezone -> dynamic parameter (if present) -> data parameter -> empty string
   resolved_timezone = coalesce(
     var.timezone,
-    try(data.coder_parameter.timezone_dynamic[0].value, data.coder_parameter.timezone.value),
+    try(data.coder_parameter.timezone[0].value, ""),
     ""
   )
 }
