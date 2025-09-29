@@ -14,7 +14,7 @@ testable.
 
 ```terraform
 module "timezone" {
-  source   = "git::https://github.com/embold/coder-timezone.git?ref=v1.0.0"
+  source   = "git::https://github.com/emboldagency/coder-timezone.git?ref=v1.0.0"
   count    = data.coder_workspace.me.start_count
   agent_id = coder_agent.example.id
 }
@@ -24,7 +24,7 @@ Set the time zone explicitly:
 
 ```terraform
 module "timezone" {
-  source   = "git::https://github.com/embold/coder-timezone.git?ref=v1.0.0"
+  source   = "git::https://github.com/emboldagency/coder-timezone.git?ref=v1.0.0"
   count    = data.coder_workspace.me.start_count
   agent_id = coder_agent.example.id
   timezone = "America/Los_Angeles"
