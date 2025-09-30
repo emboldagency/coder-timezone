@@ -35,7 +35,7 @@ resource "coder_script" "timezone" {
   # workspace parameter so end-users can change it at runtime.
   script             = templatefile("${path.module}/run.sh", { TIMEZONE = local.resolved_timezone })
   display_name       = "Timezone"
-  icon               = "/icon/clock.svg"
+  icon               = "/emojis/1f553.png"
   run_on_start       = true
   start_blocks_login = false
 }
