@@ -7,9 +7,10 @@ terraform {
 }
 
 data "coder_parameter" "timezone" {
-  count      = var.timezone == null ? 1 : 0
+  count       = var.timezone == null ? 1 : 0
   name        = "Timezone"
   description = "Set the container timezone for the workspace."
+  icon        = "/emojis/1f553.png"
   type        = "string"
   default     = "America/New_York"
   mutable     = true
